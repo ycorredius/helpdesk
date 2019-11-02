@@ -11,6 +11,7 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem 'tux'
+gem 'session', '~> 3.2'
 
 group :test do
   gem 'rspec'

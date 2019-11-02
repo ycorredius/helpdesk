@@ -5,35 +5,32 @@ class UsersController < ApplicationController
     erb :"/users/index.html"
   end
 
-  # GET: /users/new
-  get "/users/new" do
+  # GET: /users/signup
+  get "/users/signup" do
     erb :"/users/new.html"
   end
 
-  # POST: /users
-  post "/users" do
-    binding.pry
+  # POST: /users/login
+  post "/users/login" do
     @user = User.find_by_email(params[:email])
-    if @user.authenticate(params[:password])
+    if !@user.nil? && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect '/users/:id'
+      redirect "/users/:id"
     else
-      redirect '/users'
+      erb :"/users/error.html"
     end
   end
 
-  post "/users/new" do
+#POST: /users/create new
+  post "/users/signup" do
     # binding.pry
-    @user = User.find_by_email(params[:email])
-    if @users
-      binding.pry
-
-      redirect "/users"
-    elsif params[:password] == params[:password_confirmation]
-      @user = User.create(email:params[:email], password: params[:password])
-      redirect "/users"
+    @user = User.find_by_email(params[:user][:email])
+    if @user.nil? && params[:user][:password] == params[:password_confirmation]
+      @user = User.create(params[:user])
+      session[:user_id] = @user.id
+      redirect "/user/login"
     else
-      redirect "/users/new"
+      erb :"/users/error.html"
     end
   end
 
@@ -57,4 +54,7 @@ class UsersController < ApplicationController
     redirect "/users"
   end
 
+  get "/users/error" do
+
+  end
 end
