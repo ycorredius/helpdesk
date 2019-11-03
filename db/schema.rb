@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191101095255) do
+ActiveRecord::Schema.define(version: 20191103090229) do
 
   create_table "tickets", force: :cascade do |t|
     t.string  "short_description"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20191101095255) do
     t.string  "first"
     t.string  "last"
     t.string  "password_digest"
+    t.boolean "set_up",          default: false
   end
 
 end

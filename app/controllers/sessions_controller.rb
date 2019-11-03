@@ -1,14 +1,42 @@
 class SessionsController < ApplicationController
 
-  # GET: /sessions
-  get "/sessions" do
-    erb :"/sessions/index.html"
+  # GET: /sessions/signup
+  get "/sessions/signup" do
+    erb :"/signup.html"
   end
 
-  # GET: /sessions/new
-  get "/sessions/new" do
-    erb :"/sessions/new.html"
+  #GET: /session/login
+  get "/sessions/login" do
+    erb :"/login.html"
   end
+
+  post "/sessions/signup" do
+    # binding.pry
+    @user = User.find_by_email(params[:user][:email])
+    if @user.nil? && params[:user][:password] == params[:password_confirmation]
+      @user = User.create(params[:user])
+    else
+      erb :"/users/error.html"
+    end
+    redirect "/sessions/login"
+  end
+
+  # POST: /users/login
+  post "/sessions/login" do
+    @user = User.find_by_email(params[:email])
+    if !@user.nil? && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      binding.pry
+      if !@user.set_up?
+        session[:user_id]
+        redirect "/users/profile_setup"
+      end
+      redirect "/users/#{session[:user_id]}"
+    else
+      erb :"/users/error.html"
+    end
+  end
+
 
   # POST: /sessions
   post "/sessions" do

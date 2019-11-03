@@ -5,39 +5,16 @@ class UsersController < ApplicationController
     erb :"/users/index.html"
   end
 
-  # GET: /users/signup
-  get "/users/signup" do
-    erb :"/users/new.html"
+  get "/users/profile_setup" do
+    erb :"/users/profile.html"
   end
-
-  # POST: /users/login
-  post "/users/login" do
-    @user = User.find_by_email(params[:email])
-    if !@user.nil? && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      redirect "/users/:id"
-    else
-      erb :"/users/error.html"
-    end
-  end
-
-#POST: /users/create new
-  post "/users/signup" do
-    # binding.pry
-    @user = User.find_by_email(params[:user][:email])
-    if @user.nil? && params[:user][:password] == params[:password_confirmation]
-      @user = User.create(params[:user])
-      session[:user_id] = @user.id
-      redirect "/user/login"
-    else
-      erb :"/users/error.html"
-    end
-  end
-
+  
   # GET: /users/5
   get "/users/:id" do
     erb :"/users/show.html"
   end
+
+
 
   # GET: /users/5/edit
   get "/users/:id/edit" do
