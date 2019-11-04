@@ -8,13 +8,11 @@ class UsersController < ApplicationController
   get "/users/profile_setup" do
     erb :"/users/profile.html"
   end
-  
+
   # GET: /users/5
   get "/users/:id" do
     erb :"/users/show.html"
   end
-
-
 
   # GET: /users/5/edit
   get "/users/:id/edit" do
