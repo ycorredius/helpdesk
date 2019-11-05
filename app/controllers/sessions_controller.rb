@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   # GET: /sessions/signup
   get "/sessions/signup" do
     erb :"/signup.html"
@@ -8,6 +7,17 @@ class SessionsController < ApplicationController
   #GET: /session/login
   get "/sessions/login" do
     erb :"/login.html"
+  end
+
+  # POST: /users/login
+  post "/sessions/login" do
+    @user = User.find_by_email(params[:email])
+    if !@user.nil? && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect "/users"
+    else
+      erb :"/users/error.html"
+    end
   end
 
   post "/sessions/signup" do
@@ -20,24 +30,6 @@ class SessionsController < ApplicationController
     end
     redirect "/sessions/login"
   end
-
-  # POST: /users/login
-  post "/sessions/login" do
-    @user = User.find_by_email(params[:email])
-    if !@user.nil? && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      binding.pry
-      if !@user.set_up?
-        session[:user_id]
-        redirect "/users/profile_setup"
-      end
-      redirect "/users/#{session[:user_id]}"
-    else
-      erb :"/users/error.html"
-    end
-  end
-
-
   # POST: /sessions
   post "/sessions" do
     redirect "/sessions"

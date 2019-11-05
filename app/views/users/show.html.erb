@@ -1,4 +1,11 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h2>Welcome back <%=@user.first%>!</h2>
+<br>
+<p>Current tickets</p>
+<ul>
+  <%@user.tickets.each do |x|%>
+    <li><%=x.description%></li>
+  <%end%>
+</ul>
 <%# TODO: Make button to create new tickets%>
 <%# TODO: Create interface that tracks user's tickets %>
 <%# TODO: Create agent interface that shows list of tickets %>

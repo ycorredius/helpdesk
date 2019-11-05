@@ -1,13 +1,19 @@
 <h1>Start Your Free Account Today!</h1>
-  <h3>Create an Account</h3>
-  <form action="/sessions/signup" method="POST">
-    <ul>
-      <li><input type="text" placeholder="Email" name="user[email]"></li>
-      <br>
-      <li><input type="password" placeholder="Password" name="user[password]"></li>
-      <br>
-      <li><input type="password" placeholder="Password Confirmation" name="password_confirmation"></li>
-    </ul>
+<h3>Create an Account</h3>
+<form action="/sessions/signup" method="POST">
+  <ul>
+    <li><input type="text" name="user[first]" placeholder="First Name"></li>
     <br>
-    <input type="submit" value="Create Account">
-  </form>
+    <li><input type="text" name="user[last]" placeholder="Last Name"></li>
+    <br>
+    <li><input type="text" name="user[company]" placeholder="Company"></li>
+    <br>
+    <li><input type="text" placeholder="Email" name="user[email]"></li>
+    <br>
+    <li><input type="password" placeholder="Password" name="user[password]"></li>
+    <br>
+    <li><input type="password" placeholder="Password Confirmation" name="password_confirmation"></li>
+  </ul>
+  <br>
+  <input type="submit" value="Create Account">
+</form>

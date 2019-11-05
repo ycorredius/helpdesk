@@ -2,17 +2,22 @@ class UsersController < ApplicationController
 
   # GET: /users
   get "/users" do
-    erb :"/users/index.html"
-  end
-
-  get "/users/profile_setup" do
-    erb :"/users/profile.html"
+    @user = User.find_by_id(session[:user_id])
+    binding.pry
+    erb :"/users/show.html"
+    # erb :"/users/index.html"
   end
 
   # GET: /users/5
   get "/users/:id" do
     erb :"/users/show.html"
   end
+
+  get "/users/profile_setup" do
+    erb :"/users/profile.html"
+  end
+
+
 
   # GET: /users/5/edit
   get "/users/:id/edit" do
