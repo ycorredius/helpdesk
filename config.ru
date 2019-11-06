@@ -7,5 +7,6 @@ end
 Dotenv.load
 
 run ApplicationController
+use TicketsController
 use SessionsController
 use UsersController
