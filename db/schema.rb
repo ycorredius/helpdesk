@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20191106184930) do
   create_table "tickets", force: :cascade do |t|
     t.string  "short_description"
     t.string  "content"
-    t.integer "tier_id"
+    t.integer "tier_id",           default: 1
     t.integer "user_id"
     t.string  "comment_id"
   end

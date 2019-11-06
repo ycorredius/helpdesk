@@ -4,4 +4,7 @@
     <%= @ticket.content%>
 </p>
 <br>
-<a href="/"></a>
+<%if @ticket.user_id == session[:user_id]%>
+    <a href="/tickets/<%=@ticket.id%>/edit">Edit</a>
+<% end %>
+<a href="/comments/new"></a>

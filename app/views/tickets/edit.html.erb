@@ -1,1 +1,8 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h2><%=@ticket.short_description%></h2>
+<br>
+<form method="POST" action="/tickets/:id">
+<input type="hidden" name="_method" value="patch">
+<textarea name="content"cols="30" rows="10" ><%=@ticket.content%></textarea>
+<br>
+<input type="submit" value="patch" >
+</form>

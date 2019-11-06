@@ -13,14 +13,14 @@ class TicketsController < ApplicationController
 
   # POST: /tickets
   post "/tickets" do
-    binding.pry
     @user = User.find_by_id(session[:user_id])
+    # if @user.tickets.find_by_id(para)
     if !params[:content].empty? && !params[:short_description].empty?
       @user.tickets.create(short_description: params[:short_description], content: params[:content])
     else
       redirect "/tickets/new"
     end
-    redirect "/tickets"
+    redirect "/users"
   end
 
   # GET: /tickets/5
@@ -31,12 +31,14 @@ class TicketsController < ApplicationController
 
   # GET: /tickets/5/edit
   get "/tickets/:id/edit" do
+    @ticket = Ticket.find_by_id(params[:id])
     erb :"/tickets/edit.html"
   end
 
   # PATCH: /tickets/5
   patch "/tickets/:id" do
-    redirect "/tickets/:id"
+    binding.pry
+    redirect "/users"
   end
 
   # DELETE: /tickets/5/delete

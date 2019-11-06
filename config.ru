@@ -11,3 +11,4 @@ use CommentsController
 use TicketsController
 use SessionsController
 use UsersController
+use Rack::MethodOverride
