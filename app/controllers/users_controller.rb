@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   # GET: /users
   get "/users" do
     @user = User.find_by_id(session[:user_id])
-    binding.pry
     erb :"/users/show.html"
     # erb :"/users/index.html"
   end
@@ -16,8 +15,6 @@ class UsersController < ApplicationController
   get "/users/profile_setup" do
     erb :"/users/profile.html"
   end
-
-
 
   # GET: /users/5/edit
   get "/users/:id/edit" do

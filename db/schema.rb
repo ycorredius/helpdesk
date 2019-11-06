@@ -11,13 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191106075829) do
+ActiveRecord::Schema.define(version: 20191106184930) do
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "statement"
+    t.integer  "user_id"
+    t.integer  "ticket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tickets", force: :cascade do |t|
     t.string  "short_description"
     t.string  "content"
     t.integer "tier_id"
     t.integer "user_id"
+    t.string  "comment_id"
   end
 
   create_table "users", force: :cascade do |t|
