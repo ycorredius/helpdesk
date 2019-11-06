@@ -1,1 +1,7 @@
-<h1>This is the Model's index page.</h1>
+<h1>Open Tickets</h1>
+<br>
+<ul>
+<% @tickets.each do |ticket|%>
+    <li><%=ticket.short_description%> <a href="/ticket/#{@ticket.id}">View</a></li>
+<% end %>
+</ul>

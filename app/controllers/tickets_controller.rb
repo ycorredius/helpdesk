@@ -2,6 +2,7 @@ class TicketsController < ApplicationController
 
   # GET: /tickets
   get "/tickets" do
+    @tickets = Ticket.all
     erb :"/tickets/index.html"
   end
 
@@ -12,12 +13,19 @@ class TicketsController < ApplicationController
 
   # POST: /tickets
   post "/tickets" do
-    
+    binding.pry
+    @user = User.find_by_id(session[:user_id])
+    if !params[:content].empty? && !params[:short_description].empty?
+      @user.tickets.create(short_description: params[:short_description], content: params[:content])
+    else
+      redirect "/tickets/new"
+    end
     redirect "/tickets"
   end
 
   # GET: /tickets/5
   get "/tickets/:id" do
+    @ticket = Ticket.find_by_id(params[:id])
     erb :"/tickets/show.html"
   end
 

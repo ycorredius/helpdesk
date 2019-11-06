@@ -4,8 +4,9 @@
 <ul>
   <% if @user.tickets.length == 0%>
     <li>No current tickets</li>  
+    <%else%>
     <%@user.tickets.each do |x|%>
-      <li><%=x.short_description%></li>
+      <li><%=x.short_description%> <a href="/tickets/<%=x.id%>">View</a></li>
     <%end%>
   <% end%>
 </ul>
