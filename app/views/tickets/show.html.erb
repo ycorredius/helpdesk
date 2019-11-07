@@ -7,4 +7,15 @@
 <%if @ticket.user_id == session[:user_id]%>
     <a href="/tickets/<%=@ticket.id%>/edit">Edit</a>
 <% end %>
-<a href="/comments/new"></a>
+<br>
+<h4>Comments</h4>
+<ul>
+<% if @ticket.comments.size > 0%>
+    <%@ticket.comments.each do|comment|%>
+        <li><%comment.statement%></li>
+    <% end %>
+<% else %>
+    <p>No comments</p>
+<% end %>
+</ul>
+<a href="/comments/new">Add comment</a>

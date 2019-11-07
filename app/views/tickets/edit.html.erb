@@ -1,8 +1,8 @@
 <h2><%=@ticket.short_description%></h2>
 <br>
-<form method="POST" action="/tickets/:id">
+<form method="POST" action="/tickets/<%=@ticket.id%>">
 <input type="hidden" name="_method" value="patch">
-<textarea name="content"cols="30" rows="10" ><%=@ticket.content%></textarea>
+<textarea name="ticket[content]"cols="30" rows="10" ><%=@ticket.content%></textarea>
 <br>
-<input type="submit" value="patch" >
+<input type="submit" value="patch" name="patch">
 </form>
