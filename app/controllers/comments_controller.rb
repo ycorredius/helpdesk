@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
 
   # GET: /comments
   get "/comments" do
+
     erb :"/comments/index.html"
   end
 
@@ -12,7 +13,11 @@ class CommentsController < ApplicationController
 
   # POST: /comments
   post "/comments" do
-    redirect "/comments"
+    binding.pry
+    if !params[:statement].empty?
+      Comment.create(statement: params[:statement])
+    end
+    redirect "/tickets"
   end
 
   # GET: /comments/5
