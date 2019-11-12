@@ -2,6 +2,6 @@
 <br>
 <ul>
 <% @tickets.each do |ticket|%>
-    <li><%=ticket.short_description%> <a href="/ticket/#{@ticket.id}">View</a></li>
+    <li><%=ticket.short_description%> <a href="/ticket/<%=@ticket.id%>">View</a></li>
 <% end %>
 </ul>

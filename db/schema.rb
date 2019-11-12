@@ -11,33 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191106184930) do
+ActiveRecord::Schema.define(version: 20191111231101) do
+
+# Could not dump table "agents" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "comments", force: :cascade do |t|
     t.string   "statement"
     t.integer  "user_id"
     t.integer  "ticket_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "time_created", limit: 6
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.string  "short_description"
-    t.string  "content"
-    t.integer "tier_id",           default: 1
-    t.integer "user_id"
-    t.string  "comment_id"
+    t.string   "short_description"
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "tier_id",                     default: 1
+    t.datetime "ticket_created",    limit: 6
+    t.integer  "comment_id"
+    t.boolean  "competed",                    default: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string  "email"
-    t.string  "ticket_id"
-    t.integer "phone_number"
-    t.string  "company"
-    t.string  "first"
-    t.string  "last"
-    t.string  "password_digest"
-    t.boolean "set_up",          default: false
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
+    t.string "ticket_id"
   end
 
 end

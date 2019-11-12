@@ -40,6 +40,17 @@ class TicketsController < ApplicationController
     binding.pry
     redirect "/users"
   end
+  
+  post "/tickets/:id/comments" do
+    @ticket =  Ticket.find_by_id(params[:id])
+    if !params[:statement].empty? && @ticket
+      @comment = current_user.comments.create(statement: params[:statement])
+      @ticket.comments << @comment
+    end
+    @ticket
+    binding.pry
+    redirect "/tickets/#{@ticket.id}"
+  end
 
   # DELETE: /tickets/5/delete
   delete "/tickets/:id/delete" do

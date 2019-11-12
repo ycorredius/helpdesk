@@ -4,7 +4,7 @@ class CreateComments < ActiveRecord::Migration
       t.string :statement
       t.integer :user_id
       t.integer :ticket_id
-      t.timestamps null: false
+      t.datetime :time_created, limit: 6
     end
   end
 end

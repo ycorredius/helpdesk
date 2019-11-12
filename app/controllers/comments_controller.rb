@@ -11,15 +11,6 @@ class CommentsController < ApplicationController
     erb :"/comments/new.html"
   end
 
-  # POST: /comments
-  post "/comments" do
-    binding.pry
-    if !params[:statement].empty?
-      Comment.create(statement: params[:statement])
-    end
-    redirect "/tickets"
-  end
-
   # GET: /comments/5
   get "/comments/:id" do
     erb :"/comments/show.html"

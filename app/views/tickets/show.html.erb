@@ -12,15 +12,18 @@
 <ul>
 <% if @ticket.comments.size > 0%>
     <%@ticket.comments.each do|comment|%>
-        <li><%comment.statement%></li>
+        <%@user = User.find_by_id(comment.user_id)%>
+        <li><%=@user.username%> - <%=comment.statement%></li>
     <% end %>
 <% else %>
     <p>No comments</p>
 <% end %>
+<br>
 </ul>
-<form method="post" action="/comments" >
+<form method="post" action="/tickets/<%=@ticket.id%>/comments" >
 <textarea name="statement"cols="30" rows="10" placeholder="Add Comment Here"></textarea>
 <br>
 <input type="submit" value="Add comment">
 </form>
-<a href="/comments/new">Add comment</a>
+<br>
+<a href="/users">home</a>
